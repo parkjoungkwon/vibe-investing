@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hearth · 사내 채널</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div id="login" class="login-wrap">
+      <div class="login-card">
+        <p class="eyebrow">내부 직원 전용</p>
+        <h1>Hearth</h1>
+        <p class="sub">사내 채널 · 허용된 회사 계정만 입장합니다. 공개 가입은 없습니다.</p>
+        <form id="login-form">
+          <label for="email">회사 메일
+            <input id="email" name="email" type="email" required placeholder="ada@hearth.local" autocomplete="username" />
+          </label>
+          <label for="displayName">표시 이름
+            <input id="displayName" name="displayName" type="text" required placeholder="이다은" autocomplete="nickname" />
+          </label>
+          <button id="login-submit" type="submit">입장</button>
+        </form>
+        <p id="login-error" class="error" hidden></p>
+        <p class="hint">로컬 예시: ada@hearth.local / beom@hearth.local / admin@hearth.local</p>
+      </div>
+    </div>
+
+    <div id="app" hidden>
+      <aside class="rail">
+        <header class="brand">
+          <strong>Hearth</strong>
+          <span id="workspace-name">사내 채널</span>
+        </header>
+        <p class="who"><span id="me-name"></span><button type="button" id="logout">나가기</button></p>
+        <div class="search-box">
+          <input id="search" type="search" placeholder="볼 수 있는 대화만 찾기" />
+        </div>
+        <section>
+          <h2>공개 채널</h2>
+          <ul id="public-list"></ul>
+          <button type="button" id="new-public">+ 공개 채널</button>
+        </section>
+        <section>
+          <h2>비공개 채널</h2>
+          <ul id="private-list"></ul>
+          <button type="button" id="new-private">+ 비공개 채널</button>
+        </section>
+        <section>
+          <h2>쪽지</h2>
+          <ul id="dm-list"></ul>
+          <button type="button" id="new-dm">+ 쪽지</button>
+        </section>
+        <section id="joinable-section" hidden>
+          <h2>아직 안 들어간 공개 채널</h2>
+          <ul id="joinable-list"></ul>
+        </section>
+        <section id="admin-section" hidden>
+          <h2>관리</h2>
+          <button type="button" id="export">전체 내보내기</button>
+          <button type="button" id="audit">감사 기록</button>
+        </section>
+      </aside>
+      <main class="pane">
+        <header class="pane-head">
+          <div>
+            <h1 id="channel-title">채널을 고르세요</h1>
+            <p id="channel-meta"></p>
+          </div>
+          <button type="button" id="invite" hidden>멤버 초대</button>
+        </header>
+        <div id="messages" class="messages"></div>
+        <form id="composer" class="composer" hidden>
+          <textarea id="body" rows="2" placeholder="메시지 · @메일로 언급"></textarea>
+          <div class="composer-row">
+            <input id="file" type="file" />
+            <button type="submit">보내기</button>
+          </div>
+        </form>
+      </main>
+      <aside id="thread" class="thread" hidden>
+        <header>
+          <h2>이어진 대화</h2>
+          <button type="button" id="close-thread">닫기</button>
+        </header>
+        <div id="thread-messages" class="messages"></div>
+        <form id="thread-composer" class="composer">
+          <textarea id="thread-body" rows="2" placeholder="답글"></textarea>
+          <button type="submit">답글 보내기</button>
+        </form>
+      </aside>
+    </div>
+
+    <div id="modal" class="modal" hidden>
+      <div class="modal-card">
+        <h2 id="modal-title"></h2>
+        <div id="modal-body"></div>
+        <button type="button" id="modal-close">닫기</button>
+      </div>
+    </div>
+    <script src="/app.js"></script>
+  </body>
+</html>
